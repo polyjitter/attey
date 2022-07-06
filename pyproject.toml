@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "attey"
+version = "0.1.0"
+description = "Manager bot for the @rcade Discord project."
+authors = ["Adriene Kae <polyjitter@fastmail.com>"]
+license = "GPLv3"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+hikari = "^2.0.0-alpha.109"
+hikari-sake = "^0.0.1"
+hikari-miru = "^1.1.1"
+hikari-clusters = "^0.2.5"
+hikari-lightbulb = "^2.2.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
