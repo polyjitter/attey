@@ -10,7 +10,7 @@ with open("./config.json") as f:
 
     MAINTENANCE = _config["MAINTENANCE"]
 
-    if _config['RETHINK']['DB']:
+    if _config['RETHINK']['NAME']:
         re = rethinkdb.RethinkDB()
         re.set_loop_type("asyncio")
         DB_NAME = _config['RETHINK']['NAME']
