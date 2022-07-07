@@ -2,12 +2,14 @@ from enum import Enum
 from typing import Optional
 
 import hikari
-import attey
+from hikari.api.cache import Cache
 
+import attey
 from attey.models import options
 from attey.models.abc import Model
+
 from models.player import PlayerModel
-from models.channel import ChannelModel
+from models.channel import ChannelModel, ChannelType
 from models.panel import PanelModel
 
 
@@ -57,6 +59,7 @@ class RoomModel(Model):
         self.id = category.id
         await self.save()  # Save to the database to avoid issues
 
+        # Panel
         panel_channel = guild.create_text_channel(
             "panel",
             nsfw=self.nsfw,
@@ -64,7 +67,31 @@ class RoomModel(Model):
         )
         self.panel = PanelModel(panel_channel.id)
 
-        
+        # Offtopic
+        offtopic_channel = guild.create_text_channel(
+            "offtopic",
+            nsfw=self.nsfw,
+            category=category,
+        )
+        offtopic = ChannelModel(
+            offtopic_channel.id,
+            type=ChannelType.OFFTOPIC,
+        )
+        self.channels.append(offtopic)
+
+        # Play
+        all_players_channel = guild.create_text_channel(
+            "play",
+            nsfw=self.nsfw,
+            category=category,
+        )
+        all_players = ChannelModel(
+            all_players_channel.id,
+            type=ChannelType.ALL_PLAYERS,
+        )
+        self.channels.append(all_players)
+
+        return await guild.get_channel(self.id)
 
     async def save(self):
         ...
