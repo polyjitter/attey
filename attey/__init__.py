@@ -13,6 +13,7 @@ with open("./config.toml") as f:
 
     TOKEN = _config["bot"]["token"]
     MAINTENANCE = _config["bot"]["maintenance"]
+    HOME_GUILD = _config["bot"]["home_guild"]
 
     if _config["rethink"]["name"]:
         re = rethinkdb.RethinkDB()

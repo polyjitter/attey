@@ -17,6 +17,7 @@ def create_bot() -> lightbulb.BotApp:
             | hikari.Intents.MESSAGE_CONTENT
             | hikari.Intents.GUILD_WEBHOOKS
         ),
+        default_enabled_guilds=attey.HOME_GUILD,
     )
 
     bot.load_extensions_from("./attey/commands")
