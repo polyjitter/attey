@@ -13,10 +13,10 @@ with open("./config.toml") as f:
 
     TOKEN = _config["bot"]["token"]
     MAINTENANCE = _config["bot"]["maintenance"]
-    HOME_GUILD = _config["bot"]["home_guild"]
+    HOME_ID = _config["bot"]["home_guild"]
 
     if _config["rethink"]["name"]:
-        re = rethinkdb.RethinkDB()
-        re.set_loop_type("asyncio")
+        db = rethinkdb.RethinkDB()
+        db.set_loop_type("asyncio")
         DB_NAME = _config["rethink"]["name"]
         DB_TABLES = _config["rethink"]["tables"]
