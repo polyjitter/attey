@@ -2,14 +2,12 @@ import os
 
 import hikari
 import lightbulb
-import toml
+import miru
 
 import attey
 
 
-def create_bot() -> lightbulb.BotApp:
-
-    bot = lightbulb.BotApp(
+attey.bot = lightbulb.BotApp(
         token=attey.TOKEN,
         intents=(
             hikari.Intents.GUILD_MESSAGES
@@ -20,10 +18,9 @@ def create_bot() -> lightbulb.BotApp:
         default_enabled_guilds=attey.HOME_GUILD,
     )
 
-    bot.load_extensions_from("./attey/commands")
+attey.bot.load_extensions_from("./attey/commands")
 
-    return bot
-
+miru.load(attey.bot)
 
 if __name__ == "__main__":
     if os.name != "nt":
@@ -31,4 +28,4 @@ if __name__ == "__main__":
 
         uvloop.install()
 
-    create_bot().run()
+    attey.bot.run()
